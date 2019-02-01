@@ -62,7 +62,7 @@ Accept wildcard characters: False
 ```
 
 ### -DisplayName
-The DisplayName parameter specifies the display name for the label. The display name appears in the Microsoft Office and is used by Outlook users to select the appropriate label before they send a message.
+The DisplayName parameter specifies the default display name for the label. The display name appears in apps like Microsoft Office and is used by users to select the appropriate label for their content.
 
 ```yaml
 Type: String
@@ -77,7 +77,8 @@ Accept wildcard characters: False
 ```
 
 ### -AdvancedSettings
-{{Fill AdvancedSettings Description}}
+The AdvancedSettings parameter specifies an optional hashtable of settings. 
+New/Set-Label -AdvancedSettings @{ArbitraryKey1=Value1; ArbitraryKey2=Value2, ArbitraryKey3='["Value1","Value2"]')
 
 ```yaml
 Type: PswsHashtable
@@ -126,7 +127,7 @@ Accept wildcard characters: False
 ```
 
 ### -Identity
-{{Fill Identity Description}}
+{{Fill Identity Description}} (Not documented)
 
 ```yaml
 Type: MasterIdParameter
@@ -141,7 +142,25 @@ Accept wildcard characters: False
 ```
 
 ### -LocaleSettings
-{{Fill LocaleSettings Description}}
+The LocaleSettings parameter is used to assign  localized display text for labels, such as the label's display name, or its tooltip.
+New/Set-Label -LocaleSettings @{ 
+    "localeKey": "DisplayName", 
+    "Settings": [ 
+                        {"Key": "en-us", "Value": "English display name"}, 
+                        {"Key":  "de-de", Value": "German display name"}, 
+                        {"Key": "es-es", Value": "Spanish display name"}, 
+                        ] 
+}, 
+{ 
+"localeKey": "Tooltip", 
+ "Settings": [ 
+                        {"Key": "en-us", "Value": "English Tooltip"}, 
+                        {"Key":  "de-de", Value": "German Tooltip"}, 
+                        {"Key": "es-es", Value": "Spanish Tooltip"}, 
+                        ] 
+} 
+
+
 
 ```yaml
 Type: MultiValuedProperty
@@ -156,7 +175,7 @@ Accept wildcard characters: False
 ```
 
 ### -ParentId
-The ParentId parameter specifies the policy that contains the label. You can use any value that uniquely identifies the policy. For example:
+The ParentId parameter is used to define a sub-label. The ParentID specifies the ID of the parent Label of this label. For example:
 
 - Name
 
@@ -177,7 +196,7 @@ Accept wildcard characters: False
 ```
 
 ### -Settings
-{{Fill Settings Description}}
+Not documented at this time.
 
 ```yaml
 Type: PswsHashtable
@@ -192,7 +211,7 @@ Accept wildcard characters: False
 ```
 
 ### -Tooltip
-{{Fill Tooltip Description}}
+Assign the display text that appears in apps like Office when the user hovers over the label. This is often used to provide the user with additional, but optional, info about the label before they assign it to their content.
 
 ```yaml
 Type: String
